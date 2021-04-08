@@ -59,9 +59,6 @@ function Sign() {
                     name="email"
                     rules={[
                         {
-                            required: true,
-                            message: "邮箱号不能为空",
-                        }, {
                             pattern: "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,20}$",
                             message: "请输入正确的邮箱号"
                         }
