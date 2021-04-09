@@ -1,16 +1,21 @@
 import { Form, Button, Tabs, Input, message } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, UserOutlined, LockOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
-import { sign } from '../../service/sign'
+import { sign } from '../../service/sign';
+import { RES_CODES } from '../../utils/Enum';
 import './Sign.css';
 
 function Sign() {
-    function onSubmit(values) {
-        console.log(values);
+    async function onSubmit(values) {
         if(Reflect.has(values,'confirm_password')){
             Reflect.deleteProperty(values,'confirm_password');
         }
-        const result = sign(values);
-        console.log(result);
+        const result =await sign(values);
+        const { code, msg } = result;
+        if(code === RES_CODES.SUCCESS){
+            message.success(msg);
+        }else{
+            message.error(msg);
+        }
     }
     return (
         <div className="sign">
@@ -59,7 +64,7 @@ function Sign() {
                     name="email"
                     rules={[
                         {
-                            pattern: "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,20}$",
+                            pattern: "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*.[a-zA-Z0-9]{2,20}$",
                             message: "请输入正确的邮箱号"
                         }
                     ]}

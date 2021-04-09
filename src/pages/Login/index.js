@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Button, message, Tabs, Checkbox } from "antd";
 import { pwdLogin, codeLogin } from "../../service/login";
 import { LoginWay } from "../../utils/Enum";
@@ -52,7 +53,8 @@ function Login() {
                 {loginWay ? <PwdLogin /> : <CodeLogin />}
                 <div style={{"marginBottom": "24px","textAlign":"left"}}>
                     <Checkbox>自动登录</Checkbox>
-                    <a style={{float:'right'}} href='true' >忘记密码 ?</a>
+                    <span style={{float:"right"}}><Link to='/editpwd'>忘记密码 ?</Link></span>
+                    
                 </div>
                 <Form.Item>
                     <Button

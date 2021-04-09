@@ -4,10 +4,10 @@ import {
     Route,
     Link,
 } from "react-router-dom";
-import { Button } from 'antd';
 import Login from './pages/Login';
 import Sign from './pages/Sign';
 import Welcome from './pages/Welcome';
+import EditPwd from './pages/EditPwd';
 import './app.css';
 
 function LoginSign() {
@@ -28,6 +28,9 @@ function LoginSign() {
                 </Route>
                 <Route path="/sign">
                     <Sign />
+                </Route>
+                <Route path="/editpwd">
+                    <EditPwd />
                 </Route>
                 <Route exact path="/">
                     <Welcome />
