@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Tabs, Input, Button, Row, Col, message } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
 import { sendCode } from '../../service/login';
@@ -186,6 +187,27 @@ function EditPwd() {
                     >
                         修改密码
                          </Button>
+                </Form.Item>
+                <Form.Item>
+                    <Row>
+                        <Col span={11}>
+                            <Button
+                                block
+                                size="large"
+                            >
+                                <Link to='/login'>登录</Link>
+                         </Button>
+                        </Col>
+                        <Col span={2} />
+                        <Col span={11}>
+                            <Button
+                                size="large"
+                                className="login-form-button"
+                            >
+                                <Link to='/sign'>注册</Link>
+                            </Button>
+                        </Col>
+                    </Row>
                 </Form.Item>
             </Form>
         </div>

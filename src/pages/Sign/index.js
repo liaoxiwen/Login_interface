@@ -1,4 +1,5 @@
-import { Form, Button, Tabs, Input, message } from 'antd';
+import { Link } from 'react-router-dom';
+import { Form, Button, Tabs, Input, message, Row, Col } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, UserOutlined, LockOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
 import { sign } from '../../service/sign';
 import { RES_CODES } from '../../utils/Enum';
@@ -101,7 +102,7 @@ function Sign() {
                     rules={[
                         {
                             required: true,
-                            message: '请重复输入的密码',
+                            message: '请再次输入的密码',
                         },
                         ({ getFieldValue }) => ({
                             validator(_, value) {
@@ -115,20 +116,33 @@ function Sign() {
                 >
                     <Input.Password
                         size='large'
-                        placeholder="再次输入密码"
+                        placeholder="重复密码"
                         prefix={<LockOutlined />}
                         iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     />
                 </Form.Item>
                 <Form.Item>
-                    <Button
-                        size="large"
-                        className="login-form-button"
-                        type='primary'
-                        htmlType='submit'
-                    >
-                        注册
+                    <Row>
+                        <Col span={11}>
+                            <Button
+                                block
+                                size="large"
+                            >
+                                <Link to='/login'>登录</Link>
                          </Button>
+                        </Col>
+                        <Col span={2} />
+                        <Col span={11}>
+                            <Button
+                                size="large"
+                                className="login-form-button"
+                                type='primary'
+                                htmlType='submit'
+                            >
+                                注册
+                            </Button>
+                        </Col>
+                    </Row>
                 </Form.Item>
             </Form>
         </div>

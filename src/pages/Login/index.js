@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, message, Tabs, Checkbox } from "antd";
+import { Form, Button, message, Tabs, Checkbox, Row, Col } from "antd";
 import { pwdLogin, codeLogin } from "../../service/login";
-import { LoginWay } from "../../utils/Enum";
+import { LOGINWAY } from "../../utils/Enum";
 import PwdLogin from "./PwdLogin";
 import CodeLogin from "./CodeLogin";
 import 'antd/dist/antd.css';
@@ -10,9 +10,9 @@ import './Login.css';
 
 
 function Login() {
-    const [loginWay, setLogin] = useState(LoginWay.PWDLOGIN);
+    const [loginWay, setLogin] = useState(LOGINWAY.PWDLOGIN);
     function onSubmit(values) {
-        if (loginWay === LoginWay.PWDLOGIN) {
+        if (loginWay === LOGINWAY.PWDLOGIN) {
             const response = pwdLogin(values);
             response.then((res) => {
                 const { code, msg } = res;
@@ -51,20 +51,34 @@ function Login() {
                     <Tabs.TabPane key="0" tab="手机号登录"></Tabs.TabPane>
                 </Tabs>
                 {loginWay ? <PwdLogin /> : <CodeLogin />}
-                <div style={{"marginBottom": "24px","textAlign":"left"}}>
+                {loginWay ? <div style={{ "marginBottom": "24px", "textAlign": "left" }}>
                     <Checkbox>自动登录</Checkbox>
-                    <span style={{float:"right"}}><Link to='/editpwd'>忘记密码 ?</Link></span>
-                    
-                </div>
+                    <span style={{ float: "right" }}><Link to='/editpwd'>忘记密码 ?</Link></span>
+
+                </div> : ' '}
                 <Form.Item>
-                    <Button
-                        size="large"
-                        className="login-form-button"
-                        type='primary'
-                        htmlType='submit'
-                    >
-                        登录
+                    <Row>
+                        <Col span={11}>
+                            <Button
+                                block
+                                size="large"
+                                type='primary'
+                                htmlType='submit'
+                            >
+                                登录
                          </Button>
+                        </Col>
+                        <Col span={2} />
+                        <Col span={11}>
+                            <Button
+                                block
+                                size="large"
+                            >
+                                <Link to='/sign'>注册</Link>
+                            </Button>
+                        </Col>
+                    </Row>
+
                 </Form.Item>
             </Form>
         </div>
